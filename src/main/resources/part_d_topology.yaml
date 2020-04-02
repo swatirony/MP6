@@ -18,7 +18,10 @@
 
 # topology definition
 # name to be used when submitting
-name: "part-A"
+name: "part-D"
+
+# TODO
+# Task: implement your topology for part d
 
 # topology configuration
 # this will be passed to the submitter as a map of config options
@@ -30,6 +33,9 @@ config:
     topology.debug: false
     # Hint: you can set input file path here
     # make sure it's "/tmp/data.txt" in your final submission
+
+    # Hint: set N here
+    # make sure it's 10 in your final submission
 
 components:
   - id: "poolConfig"
@@ -43,40 +49,19 @@ components:
 
   # TODO
   # Task: implement the redis store mapper
-  # src/main/java/edu/illinois/storm/WordCountStoreMapper.java
-  # className: "edu.illinois.storm.WordCountStoreMapper"
-  # redis hash key for part A is "partAWordCount"
+  # src/main/java/edu/illinois/storm/TopNStoreMapper.java
+  # redis hash key for part D is "partDTopN"
 
 # spout definitions
 spouts:
-  # TODO
-  # Task: implement the random sentence spout
-  # multilang/resources/random_sentence_spout.py
-  # Hint: you need to define output field(s) here when using FluxShellSpout
 
 # bolt definitions
 bolts:
-  # TODO
-  # Task: implement the split sentences bolt
-  # multilang/resources/split_sentence_bolt.py
-
-  # TODO
-  # Task: implement the word count bolt
-  # multilang/resources/word_count_bolt.py
-
-  # TODO
-  # Task: initialize RedisStoreBolt using poolConfig and storeMapper
-  # ClassName is "org.apache.storm.redis.bolt.RedisStoreBolt"
+  # Hint: the new top N tracking bolt you need implement in this part is
+  # multilang/resources/top_n_finder_bolt.py
+  # You need to load N from conf when initialize the bolt
 
 # stream definitions
 # stream definitions define connections between spouts and bolts.
 streams:
-  # TODO
-  # Task: pipe output of sentences generating spout to split bolt
-
-  # TODO
-  # Task: pipe output of split bolt to word count bolt
-  # Hint: choose the right grouping type to make problem easier
-
-  # TODO
-  # Task: pipe output of word count bolt to redis store bolt
+  # Hint: add new top N finder bolt into the topology
